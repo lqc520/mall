@@ -75,10 +75,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
             </div>
             <div class="form-group">
-                <input  id="getCode" value="getCode" class="btn btn-primary btn-block">
+                <input  id="getCode" value="获取验证码" class="btn btn-primary btn-block">
             </div>
             
-            <input type="submit" class="btn btn-primary btn-block" value="regiter">
+            <input type="submit" class="btn btn-primary btn-block" value="注册">
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="adminLogin.html">Login Page</a>
