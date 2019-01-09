@@ -5,6 +5,6 @@
 亮点 :使用了 邮箱注册 链接激活 手机号注册 支付回调   最新的框架 配置文件集成一个 等等
 项目功能齐全
 不足 表设计有缺陷 后台还不够完善
-演示地址 :lqcnb.cn
-后台地址:lqcnb.cn/indexManager.html 
+演示地址 :http://lqcnb.cn
+后台地址:http://lqcnb.cn/indexManager.html 
 2019.1.3 完善后台大部分功能
