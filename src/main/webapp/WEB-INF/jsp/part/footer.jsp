@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in sanming university or call us on (+86) 18065859553
+						Any questions? Let us know in sanming university or call us on (+86) 1806585xxxx
 					</p>
 
 					<div class="p-t-27">
