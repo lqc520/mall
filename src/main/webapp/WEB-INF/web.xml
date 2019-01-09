@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>lqcmall</display-name>
+<!-- 以下配置的加载顺序：ServletContext >> context-param >> listener >> filter >> 
+        servlet >> spring -->
+    <!-- ps:创建:监听器 >> 过滤器 >>Servlet -->
+
+    <!--******************************************************全局范围内环境参数配置****************************************************** -->
+
+    <!-- 全局范围内环境参数初始化 -->
+    <context-param>
+        <!-- 参数名称 -->
+        <param-name>contextConfigLocation</param-name>
+        <!-- 参数值 -->
+        <param-value>classpath:config/applicationContext.xml</param-value>
+    </context-param>
+	
+	<!-- log4j 系统日志-->
+    <context-param>
+        <param-name>log4jContextName</param-name>
+        <param-value>star</param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>classpath:config/log4j2.xml</param-value>
+    </context-param>
+
+	<!-- <context-param>
+		参数名称
+		<param-name>log4jConfigLocation</param-name>
+		参数值
+	    <param-value>classpath:config/log4j2.xml</param-value>
+	  	<param-value>classpath:config/log4j.properties</param-value>
+	    <param-value>/WEB-INF/log4j.xml</param-value>
+	</context-param> -->
+	
+	<!-- log4j 配置   spring5抛弃  
+	<listener>
+	   <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener> -->
+
+
+    <!--******************************************************监听器配置****************************************************** -->
+
+	<!-- log4j2 配置-begin -->
+     <!-- listener>
+         <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+     <filter>
+         <filter-name>log4jServletFilter</filter-name>
+         <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+     </filter>
+     <filter-mapping>
+         <filter-name>log4jServletFilter</filter-name>
+         <url-pattern>/*</url-pattern>
+         <dispatcher>REQUEST</dispatcher>
+         <dispatcher>FORWARD</dispatcher>
+         <dispatcher>INCLUDE</dispatcher>
+         <dispatcher>ERROR</dispatcher>
+     </filter-mapping> -->
+     <!-- log4j2-end -->
+     
+    <!-- e.g.spring监听器 -->
+    <!-- 用来设定LIstener接口 -->
+    <listener>
+        <!--定义Listener的类名称 -->
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- 防止spring内存溢出的监听器 -->
+    <listener>
+        <!--定义Listener的类名称 -->
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+
+    <!--******************************************************过滤器配置****************************************************** -->
+
+    <!-- e.g.编码过滤器 -->
+    <!-- 用来声明filter的相关设定,过滤器可以截取和修改一个servlet或jsp页面的请求或从一个servlet或jsp页面发出的响应 -->
+    <filter>
+        <!-- 指定filter的名字 -->
+        <filter-name>encodingFilter</filter-name>
+        <!-- 定义filter的类的名称 -->
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <!-- 设置是否启用异步支持 -->
+        <async-supported>true</async-supported>
+        <!-- 用来定义参数,若在servlet可以使用下列方法来获取:String param_name = getServletContext().getInitParamter("param_name里面的值"); -->
+        <init-param>
+            <!-- 参数名称 -->
+            <param-name>encoding</param-name>
+            <!-- 参数值 -->
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <!-- 用来定义filter所对应的URL -->
+    <filter-mapping>
+        <!-- 指定对应filter的名字 -->
+        <filter-name>encodingFilter</filter-name>
+        <!-- 指定filter所对应的URL 要拦截的URL -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--******************************************************servlet配置****************************************************** -->
+
+    <!-- e.g.spring 前端控制器 -->
+    <!-- 用来声明一个servlet的数据 -->
+    <servlet>
+        <!-- 指定servlet的名称 -->
+        <servlet-name>SpringMVC</servlet-name>
+        <!-- 指定servlet的类的名称,这里配置了前端控制器 -->
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 用来定义参数,可有多个init-param, 在servlet类中通过getInitParamenter(String name)方法访问初始化参数 -->
+        <init-param>
+            <!-- 参数名称 -->
+            <param-name>contextConfigLocation</param-name>
+            <!-- 参数值 -->
+            <param-value>classpath:config/applicationContext.xml</param-value>
+        </init-param>
+        <!-- 当值为正数或零时:Servlet容器先加载数值小的servlet,再依次加载其他数值大的servlet -->
+        <load-on-startup>1</load-on-startup>
+        <!-- 设置是否启用异步支持 -->
+        <async-supported>true</async-supported>
+        <!-- 文件上传配置 -->
+        <multipart-config>
+            <!-- 文件路径 -->
+            <location></location>
+            <!-- 文件的最大大小，单位为字节 -->
+            <max-file-size>5242880</max-file-size>
+            <!-- 请求的最大大小，单位为字节 -->
+            <max-request-size>10485760</max-request-size>
+            <!--文件大小阈值，当大于这个阈值时将写入到磁盘，否则在内存中。默认值为0 -->
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <!-- 用来定义servlet所对应的URL -->
+    <servlet-mapping>
+        <!-- 指定servlet的名称 -->
+        <servlet-name>SpringMVC</servlet-name>
+        <!-- 指定servlet所对应的URL -->
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+
+    <!--******************************************************会话超时配置(单位为分钟)****************************************************** -->
+
+    <!-- 如果某个会话在一定的时间未被访问,则服务器可以扔掉以节约资源 -->
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+
+
+    <!--******************************************************MIME类型配置****************************************************** -->
+
+    <!-- 设定某种扩展名的文件用一种应用程序来打开的方式类型,当该扩展名文件被访问的时候,浏览器会自动使用指定应用程序来打开 -->
+    <mime-mapping>
+        <!-- 扩展名名称 -->
+        <extension>*.ppt</extension>
+        <!-- MIME格式 -->
+        <mime-type>application/mspowerpoint</mime-type>
+    </mime-mapping>
+
+
+    <!--******************************************************欢迎页面配置****************************************************** -->
+
+    <!-- 定义首页列单 -->
+    <welcome-file-list>
+        <!-- 用来指定首页文件名称可以用<welcome-file>指定几个首页,而服务器会依照顺序来找首页 -->
+        <!-- <welcome-file>/index.jsp</welcome-file> -->
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
+
+
+    <!--******************************************************错误页面配置****************************************************** -->
+
+    <!-- 将错误代码(Error Code)或异常(Exception)的种类对应到web应用资源路径 -->
+    <error-page>
+        <!-- HTTP Error code, e.g.404 500 -->
+        <error-code>404</error-code>
+        <!-- 用来设置发生错误或者异常时要显示的页面 -->
+        <location>/error.html</location>
+    </error-page>
+    <error-page>
+        <!-- 设置可能会发生异常的java异常类型,例如:java.lang.Exception -->
+        <exception-type>java.lang.Exception</exception-type>
+        <!-- 用来设置发生错误或者异常时要显示的页面 -->
+        <location>/ExceptionError.html</location>
+    </error-page>
+
+</web-app>

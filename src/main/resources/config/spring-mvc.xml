@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+        http://www.springframework.org/schema/tx  
+        http://www.springframework.org/schema/tx/spring-tx.xsd  
+        http://www.springframework.org/schema/aop  
+        http://www.springframework.org/schema/aop/spring-aop.xsd  
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+
+    <!--******************************************************映射器与适配器配置****************************************************** -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+
+    <!--******************************************************试图解析器配置****************************************************** -->
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <!-- 后缀 -->
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+
+    <!--******************************************************试图解析器配置****************************************************** -->
+    <!-- 自动扫描包,使SpringMVC认为包下用了@controller注解的类是控制器 -->
+    <context:component-scan base-package="com.lqc.*"></context:component-scan>
+
+
+    <!--******************************************************注入事务****************************************************** -->
+    <!-- 配置事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+
+    <!--******************************************************json配置****************************************************** -->
+    <!-- 配置使用json -->
+   <!--  <bean
+        class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonHttpMessageConverter" />
+            </list>
+        </property>
+    </bean> -->
+    <!-- 配置使用json视图解析 -->
+    <!-- <bean id="jsonHttpMessageConverter"
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean> -->
+
+
+    <!--******************************************************拦截器配置****************************************************** -->
+    <!-- 拦截器可以实现多个 -->
+<!--     <mvc:interceptors>
+        <mvc:interceptor>
+            注意路径是** 参考Ant的规范
+            <mvc:mapping path="/**" />
+            不拦截的路径
+            <mvc:exclude-mapping path="" />
+            拦截器具体实现类
+            <bean class=""></bean>
+        </mvc:interceptor>
+    </mvc:interceptors> -->
+</beans>
+

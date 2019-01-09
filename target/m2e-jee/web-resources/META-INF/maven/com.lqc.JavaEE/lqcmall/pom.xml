@@ -1,0 +1,271 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.lqc.JavaEE</groupId>
+  <artifactId>lqcmall</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>lqcmall</name>
+  <description>lqcmall for Academic year design</description>
+  <properties>
+  	<webVersion>3.1</webVersion>
+  	<spring.version>5.1.3.RELEASE</spring.version>
+  	<slf4j.version>1.7.25</slf4j.version>
+    <log4j.version>2.11.1</log4j.version>
+  </properties>
+ 
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-core</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-beans</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-web</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aop</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-expression -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-expression</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aspects</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jms</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	 
+	 
+	 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>3.4.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-spring</artifactId>
+	    <version>1.3.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+	<dependency>
+	    <groupId>com.mchange</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.5.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
+	<!-- <dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-dbcp2</artifactId>
+	    <version>2.5.0</version>
+	</dependency> -->
+	<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>druid</artifactId>
+	    <version>1.0.5</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.46</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+	<dependency>
+	    <groupId>net.sf.json-lib</groupId>
+	    <artifactId>json-lib</artifactId>
+	    <version>2.4</version>
+	    <classifier>jdk15</classifier>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/log4j/log4j  spring5抛弃 -->
+	<!-- <dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.17</version>
+	</dependency> -->
+	<!--log4j2-->
+  <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-api</artifactId>
+	    <version>${slf4j.version}</version>
+	</dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--核心log4j2jar包-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <!--用于与slf4j保持桥接-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <!--web工程需要包含log4j-web，非web工程不需要-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>${log4j.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--需要使用log4j2的AsyncLogger需要包含disruptor-->
+    <dependency>
+      <groupId>com.lmax</groupId>
+      <artifactId>disruptor</artifactId>
+      <version>3.3.7</version>
+    </dependency>
+    <!--log4j2完-->
+
+	
+	 <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.1.0</version>
+	    <scope>provided</scope>
+	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	    <version>3.8.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>2.6</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.3.3</version>
+	</dependency>
+	
+	<!-- 腾讯云api -->
+	<dependency>
+		<groupId>com.github.qcloudsms</groupId>
+		<artifactId>qcloudsms</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.7</version>
+	</dependency>
+</dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+ 
+</project>

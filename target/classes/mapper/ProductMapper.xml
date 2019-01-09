@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lqc.dao.ProductDao">
+	<select id="findDetailByDid" parameterType="int" resultType="hashmap">
+		SELECT
+			*
+		FROM
+			`product` p,
+			`product_dimg` d
+		WHERE
+			d.product_dimg_id = p.product_dimg_id
+		AND p.product_dimg_id = #{product_dimg_id}
+	</select>
+	<select id="getUserOrderDetailByUid" parameterType="int" resultType="hashmap">
+		SELECT
+			*, p.product_price * cd.product_card_count AS amount
+		FROM
+			product_card cd,
+			product_color c,
+			product_size s,
+			product_order o,
+			product p
+		WHERE
+			cd.product_color_id = c.product_color_id
+		AND cd.product_size_id = s.product_size_id
+		AND cd.product_id = p.product_id
+		AND cd.product_cart_state = 1
+		AND cd.product_user_id = o.product_user_id
+		AND cd.product_pay_no = o.product_pay_no
+		AND cd.product_user_id = #{product_user_id}
+	</select>
+	<select id="getOrderDetail" resultType="hashmap">
+		SELECT
+			*, p.product_price * cd.product_card_count AS amount
+		FROM
+			product_card cd,
+			product_color c,
+			product_size s,
+			product_order o,
+			product p
+		WHERE
+			cd.product_color_id = c.product_color_id
+		AND cd.product_size_id = s.product_size_id
+		AND cd.product_id = p.product_id
+		AND cd.product_cart_state = 1
+		AND cd.product_user_id = o.product_user_id
+		AND cd.product_pay_no = o.product_pay_no
+	</select>
+	<update id="updateProduct" parameterType="com.lqc.entity.Product">
+		UPDATE `lqcmall`.`product`
+		SET `product_id` = #{product_id},
+		 `product_name` = #{product_name},
+		 `product_price` = #{product_price},
+		 `product_img` = #{product_img},
+		 `product_card_img` = #{product_card_img},
+		 `product_describe` = #{product_describe},
+		 `product_count` = #{product_count},
+		 `product_type_id` = #{product_type_id},
+		 `product_dimg_id` = #{product_dimg_id}
+		WHERE
+			(`product_id` = #{product_id})
+		
+	</update>
+	<insert id="addProduct" parameterType="com.lqc.entity.Product">
+		INSERT INTO `lqcmall`.`product` (
+				`product_name`,
+				`product_price`,
+				`product_img`,
+				`product_card_img`,
+				`product_describe`,
+				`product_count`,
+				`product_createtime`,
+				`product_type_id`,
+				`product_dimg_id`
+			)
+			VALUES
+				(
+					#{product_name},
+					#{product_price},
+					#{product_img},
+					#{product_card_img},
+					#{product_describe},
+					#{product_count},
+					#{product_createtime},
+					#{product_type_id},
+					#{product_dimg_id}
+				);
+			
+	</insert>
+	<insert id="insertAddinfo" parameterType="com.lqc.entity.AddInfo">
+	INSERT INTO `lqcmall`.`product_addinfo` (
+		`product_id`,
+		`product_weight`,
+		`product_dimensions`,
+		`product_materials`,
+		`product_color`,
+		`product_size`
+	)
+	VALUES
+		(
+			#{product_id},
+			#{product_weight},
+			#{product_dimensions},
+			#{product_materials},
+			#{product_color},
+			#{product_size}
+		);
+	
+	</insert>
+</mapper>
