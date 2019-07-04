@@ -10,7 +10,6 @@ GitHub仓库：https://github.com/lqc520/lqcmall
 
 Git获取源码：https://github.com/lqc520/lqcmall.git
 
-许可二次开发 但是要开源 
 
 亮点 : 邮箱注册 链接激活  手机号注册 支付回调  最新的框架 项目功能齐全 等等
 
