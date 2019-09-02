@@ -49,6 +49,8 @@ public interface ProductDao {
 	public int deleteCartByCid(int product_card_id);
 	@Update("update product_card set product_cart_state=1,product_pay_no=#{product_pay_no} where product_cart_state =0 and product_user_id=#{product_user_id}")
 	public Integer updateCartStateAndPayNoByUid(Map<String,Object> map);
+	@Select("SELECT * from product_card WHERE product_user_id=#{product_user_id} and product_id=#{product_id} and product_cart_state=0")
+	public Map getCartByUidAndPid(Map map);
 	public List<Map<String, Object>> getUserOrderDetailByUid(int product_user_id);
 	public List<Map<String, Object>> getOrderDetail();
 	@Update("update product_order set product_order_address=#{product_order_address},product_order_name=#{product_order_name},product_order_telphone=#{product_order_telphone},product_pay_state=#{product_pay_state},product_order_state=#{product_order_state} where product_pay_no=#{product_pay_no}")
@@ -61,6 +63,7 @@ public interface ProductDao {
 	public int addProduct(Product product);
 	@Delete("delete from product where product_id=#{product_id}")
 	public int deleteProductByPId(int product_id);
+	//详图
 	@Insert("insert into product_dimg values(null,#{product_dimg_id},#{product_detail_img})")
 	public int insertDimg(Map<String,Object> map);
 	@Select("select * from product_dimg")

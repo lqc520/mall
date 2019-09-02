@@ -180,8 +180,12 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public boolean insertAddinfo(AddInfo addInfo) {
 		return productDao.insertAddinfo(addInfo)>0;
-	}  
-	
-	
+	}
+
+	@Override
+	public Map getCartByUidAndPid(Map map) {
+		return productDao.getCartByUidAndPid(map);
+	}
+
 
 }

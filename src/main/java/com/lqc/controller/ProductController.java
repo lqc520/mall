@@ -102,14 +102,29 @@ public class ProductController {
 	 	*/
 	@RequestMapping("addCard")
 	public void addCard(String color,String size,String pid,String count,String uid,HttpSession session){
-		Map<String, Object> map =new HashMap<String, Object>();
-		map.put("product_color_id", color);
-		map.put("product_size_id", size);
-		map.put("product_id", pid);
-		map.put("product_user_id", uid);
-		map.put("product_card_count", count);
-		System.out.println(map);
-		productService.addProductCard(map);
+		//查询购物车有没有这件商品
+		Map param =new HashMap();
+		param.put("product_user_id",uid);
+		param.put("product_id",pid);
+		Map curCart = productService.getCartByUidAndPid(param);
+		if(curCart!=null){
+			Map params = new HashMap();
+			int CurCount = Integer.parseInt(curCart.get("product_card_count").toString())+Integer.parseInt(count);
+			params.put("product_card_count",CurCount);
+			params.put("product_card_id",curCart.get("product_card_id"));
+			productService.updateCartCountByCid(params);
+		}else{
+			//没有添加商品
+			Map<String, Object> map =new HashMap<String, Object>();
+			map.put("product_color_id", color);
+			map.put("product_size_id", size);
+			map.put("product_id", pid);
+			map.put("product_user_id", uid);
+			map.put("product_card_count", count);
+			System.out.println(map);
+			productService.addProductCard(map);
+		}
+		//更新用户购物车 多个界面用到 所以用session
 		@SuppressWarnings("unchecked")
 		Map<String,Object> user=(Map<String, Object>) session.getAttribute("user");
 		List<Map<String, Object>> userCart = productService.getProductCardByUid((int)user.get("id"));

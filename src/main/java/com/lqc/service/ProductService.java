@@ -46,4 +46,5 @@ public interface ProductService {
 	public boolean updateDimg(Map<String,Object> map);
 	public boolean deleteDimg(int product_dimgId);
 	public boolean insertAddinfo(AddInfo addInfo);
+	public Map getCartByUidAndPid(Map map);
 }
