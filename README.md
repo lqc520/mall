@@ -8,6 +8,8 @@
 
 GitHub仓库：https://github.com/lqc520/lqcmall
 
+感谢Yangthirtee更新了项目 https://github.com/Yangthirteen/mall
+
 Git获取源码：https://github.com/lqc520/lqcmall.git
 
 
